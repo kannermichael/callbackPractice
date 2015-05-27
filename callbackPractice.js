@@ -24,7 +24,9 @@ and what you should write is the favNum function that makes the code above work,
 
 
 
-  //Code Here for first
+var first = function(a, b) {
+  b(a[0]);
+}
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -38,7 +40,9 @@ first(names, function(firstName){
 
 
 
-  //Code Here for last
+var last = function(a, b) {
+  b(a[a.length - 1]);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
@@ -56,7 +60,9 @@ last(names, function(lastName){
 
 
 
-  //Code Here for multiply
+var multiply = function(a,b,c) {
+  c(a * b);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ', answer); //should console.log 12
@@ -72,7 +78,15 @@ multiply(4, 3, function(answer){
 
 
 
-  //Code Here for contains
+var contains = function(a, b, c) {
+  var flag = false;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] === b) {
+      flag = true;
+    }
+  }
+  c(flag)
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
@@ -92,7 +106,19 @@ contains(names, 'Colt', function(result){
 
 
 
-    //Code Here for uniq
+var uniq = function(a,b) {
+  debugger;
+  for (var i = 0; i < a.length; i++) {
+    for (var j = i + 1; j < a.length; j++) {
+      if (a[i] === a[j]) {
+        a.splice(j, 1);
+        i--;
+      }
+    }
+  }
+  return b(a);
+}
+
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
@@ -108,7 +134,11 @@ uniq(names, function(uniqArr){
 
 
 
-    //Code Here for each
+var each = function(a,b) {
+  for (var i = 0; i < a.length; i++) {
+    b(a[i], [i]);
+  }
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
@@ -125,7 +155,13 @@ each(names, function(item, indice){
 
 
 
- //code here for getUserById
+var getUserById = function(a,b,c) {
+  for (var i = 0; i < a.length; i++) {
+    if (a[i]["id"]  === b) {
+      return c(a[i])
+    }
+  }
+}
 
 var users = [
   {
